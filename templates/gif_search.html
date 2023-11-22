@@ -40,7 +40,7 @@ Gif Search
         gif['media'][0]['gif']['url'] -->
         {% for gif in gifs %}
             <p>
-                <img src="{{ gif['media'][0]['gif']['url'] }}" alt="GIF">
+                <img src="{{ gif['media_formats']['gif']['url'] }}" alt="GIF">
             </p>
         {% endfor %}
     </section>

@@ -7,6 +7,9 @@ import os
 import random
 import requests
 
+# Load environment variables from the .env file
+from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -130,7 +133,6 @@ def save_image(image, filter_type):
 
     return file_path
 
-
 def apply_filter(file_path, filter_name):
     """Apply a Pillow filter to a saved image."""
     i = Image.open(file_path)
@@ -149,7 +151,7 @@ def image_filter():
         
         # Get the image file submitted by the user
         image = request.files.get('users_image')
-
+        
         # call `save_image()` on the image & the user's chosen filter type, save the returned
         # value as the new file path
         file_path = save_image(image, filter_type)
@@ -188,8 +190,13 @@ API_KEY with a value that is the api key for your account. """
 
 API_KEY = os.getenv('API_KEY')
 print(API_KEY)
+lmt = 8
+ckey = "my_test_app" # set the client_key for the integration and use the same value for API calls.
 
-TENOR_URL = 'https://api.tenor.com/v1/search'
+# Tenor API base URL
+TENOR_URL = f"https://tenor.googleapis.com/v2/search" #?q={q}&key=%s&client_key=%s&limit=%s""
+
+# PrettyPrinter for debugging
 pp = PrettyPrinter(indent=4)
 
 @app.route('/gif_search', methods=['GET', 'POST'])
@@ -201,6 +208,7 @@ def gif_search():
         search_query = request.form.get('search_query')
         quantity = request.form.get('quantity')
 
+        # Make a request to the Tenor API
         response = requests.get(
             TENOR_URL,
             params={
@@ -208,7 +216,8 @@ def gif_search():
                 'key': API_KEY,
                 'limit': quantity
             })
-        
+        print(response.status_code)
+        print(response.content)
         # Check if API was successful
         if response.status_code == 200:
             gifs = json.loads(response.content).get('results')
