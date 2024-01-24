@@ -9,11 +9,14 @@ import requests
 
 # Load environment variables from the .env file
 from dotenv import load_dotenv
-
+ 
 load_dotenv()
 
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='', 
+            static_folder='static',
+            template_folder='templates')
 
 @app.route('/')
 def homepage():
@@ -194,7 +197,7 @@ lmt = 8
 ckey = "my_test_app" # set the client_key for the integration and use the same value for API calls.
 
 # Tenor API base URL
-TENOR_URL = f"https://tenor.googleapis.com/v2/search" #?q={q}&key=%s&client_key=%s&limit=%s""
+TENOR_URL = f"https://tenor.googleapis.com/v2/search" 
 
 # PrettyPrinter for debugging
 pp = PrettyPrinter(indent=4)
@@ -243,3 +246,4 @@ def gif_search():
 if __name__ == '__main__':
     app.config['ENV'] = 'development'
     app.run(debug=True)
+

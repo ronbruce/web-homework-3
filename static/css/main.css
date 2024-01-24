@@ -1,0 +1,88 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Fredoka One', cursive;
+}
+
+body {
+    background-color: #F4F4F6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    max-height: 90vh;
+}
+
+h1 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #7E7F82;
+
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+li {
+    display: flex;
+    justify-content: center;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #EA5558;
+    letter-spacing: 2px;
+    transition: all 300ms ease;
+}
+
+ul, li {
+    width:100%;
+    }
+
+
+
+ul li a:hover {
+    letter-spacing: 0;
+}
+
+svg {
+    position: absolute;
+    z-index: -1;
+    transform: scale(0.5);
+}
+
+svg:nth-of-type(1) {
+    top: 80%;
+    left: 80%;
+
+    
+}
+
+svg:nth-of-type(2) {
+    top: 80%;
+    right: 80%;
+
+    
+}
+
+svg:nth-of-type(3) {
+    bottom: 80%;
+    left: 80%;
+
+    
+}
+
+svg:nth-of-type(4) {
+    bottom: 80%;
+    right: 80%;
+
+    
+}
